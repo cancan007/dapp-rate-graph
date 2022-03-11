@@ -1,0 +1,89 @@
+{
+  "contracts": {
+    "CryptCurrencyRate": "3ea73b40c5f4b2e7aaf4cfbcebaffde03810e150",
+    "MockV3Aggregator": "9e734e161b5cafcca52a917f10266f5a8bc05b28",
+    "MockWETH": "6276b835f77183770d71b6c75a81ba831dc397ba",
+    "Openzeppelin/openzeppelin-contracts@4.2.0/ERC20": "5c27d7156fdbfe889902cc167df697405a50ad20"
+  },
+  "tests": {
+    "tests/unit/test_ccr.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": "..",
+      "sha1": "51f2895cf3c4009101027700b58252ed4ee78451",
+      "txhash": [
+        "996f17ae97c64cb4d6cc57931801303ef136812f",
+        "d9c6c8f17adc2e66ae88b676f01cf943c83f7f37",
+        "e200657f76bd410cae009bfe8191f0b0ef96e7ed"
+      ]
+    }
+  },
+  "tx": {
+    "996f17ae97c64cb4d6cc57931801303ef136812f": {
+      "CryptCurrencyRate": {
+        "0": [
+          [],
+          [],
+          []
+        ],
+        "2": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ]
+      }
+    },
+    "d9c6c8f17adc2e66ae88b676f01cf943c83f7f37": {
+      "CryptCurrencyRate": {
+        "0": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [
+            8,
+            19
+          ],
+          [
+            25
+          ],
+          []
+        ]
+      },
+      "MockV3Aggregator": {
+        "3": [
+          [
+            14
+          ],
+          [],
+          []
+        ]
+      }
+    },
+    "e200657f76bd410cae009bfe8191f0b0ef96e7ed": {
+      "CryptCurrencyRate": {
+        "0": [
+          [],
+          [],
+          []
+        ],
+        "2": [
+          [],
+          [],
+          []
+        ],
+        "4": [
+          [],
+          [],
+          []
+        ]
+      }
+    }
+  }
+}
