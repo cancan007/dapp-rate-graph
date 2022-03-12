@@ -16,9 +16,11 @@ function App() {
       multicallVersion: 2  // After adding this, I could solve RetryOnEmptyError of MetaMask!
     }}>
       <Header />
-      <Container maxWidth="md">
-        <Main />
-      </Container>
+      <div className="App-header">
+        <Container maxWidth="md">
+          <Main />
+        </Container>
+      </div>
     </DAppProvider>
   );
 }
