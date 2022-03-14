@@ -82,7 +82,6 @@ if __name__ == "__main__":
 # No python server version
 #import requests
 #res = requests.get('http://localhost:9000/eth-usd')
-
 #returned_data = res.json()
 
 #for i in returned_data:
