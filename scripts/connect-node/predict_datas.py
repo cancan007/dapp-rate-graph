@@ -1,5 +1,6 @@
 import requests
 from flask import Flask, request
+from flask_cors import CORS
 import json 
 import pandas as pd
 import numpy as np
@@ -7,7 +8,12 @@ from sklearn.linear_model import LinearRegression
 
 # Setup flask server
 app = Flask(__name__) 
-  
+
+# this is a setting about which origin has right to access http://localhost:5000/eth-usd
+CORS(
+    app,
+    supports_credentials=True
+)
 # Setup url route which will calculate
 # total sum of array.
 @app.route('/eth-usd', methods = ['GET']) 
@@ -47,17 +53,17 @@ def get_data():
         else:
             x_times.append(x_times[b-1] + 86400)
 
-    x_times = np.array(x_times).reshape(-1,1)
+    x_times_np = np.array(x_times).reshape(-1,1)
     
     reg = LinearRegression()
     reg.fit(x_train, y_train)
-    ex_value = reg.predict(x_times)
+    ex_value = reg.predict(x_times_np)
 
     #x_times = x_times.reshape(1, -1).tolist()
     #ex_value = ex_value.reshape(1, -1).tolist()
 
-    x_times = x_times.tolist()
-    ex_value = ex_value.tolist()
+    #x_times = x_times.tolist()
+    ex_value = np.ravel(ex_value).tolist()  # 2 dimensions to 1 dimension, and covert to list
     
     ex_res = {
         "time": x_times,

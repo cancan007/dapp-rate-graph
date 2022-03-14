@@ -9,6 +9,7 @@ import brownieConfig from "../brownie-config.json"
 import eth from "../eth.png"
 import { BtcEurGraph } from "./graphs/BtcEurGraph"
 import { EthUsdGraph } from "./graphs/EthUsdGraph"
+import { EthUsdEx } from "./graphs/EthUsdEx"
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -47,6 +48,7 @@ export const Main = () => {
         <h2 className={classes.title}>Crypt currencies Graphs</h2>
         <BtcEurGraph />
         <EthUsdGraph />
+        <EthUsdEx />
     </>
     )
 }
