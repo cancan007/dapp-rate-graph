@@ -45,7 +45,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../front_end/build/index.html'));  // to use React
+  res.sendFile(path.join(__dirname, '../front_end/build/index.html'));  // to show React's front end in this server
 });
 
 module.exports = app;
