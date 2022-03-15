@@ -1,6 +1,25 @@
 {
     "version": "0.1.0",
     "scripts": {
-        "start": "npm run --prefix ./front_end/ start"
-    }
+        "start": "npm run --prefix ./api/ start && npm run --prefix ./scripts/connect-node start",
+        "test": "npm run --prefix ./front_end/ start",
+        "heroku-postbuild": "cd front_end && npm install && npm run build"
+    },
+    "name": "dapp-rate-graph",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cancan007/dapp-rate-graph.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cancan007/dapp-rate-graph/issues"
+    },
+    "homepage": "https://github.com/cancan007/dapp-rate-graph#readme",
+    "description": ""
 }

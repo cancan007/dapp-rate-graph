@@ -21,10 +21,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../front_end/build')));  // to use React's static files
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/eth-usd', ethUsdRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -40,6 +42,10 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../front_end/build/index.html'));  // to use React
 });
 
 module.exports = app;
