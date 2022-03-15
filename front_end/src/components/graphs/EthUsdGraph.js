@@ -15,7 +15,7 @@ class EthUsdGraph extends React.Component {
     }
 
     callAPI() {
-        fetch("http://localhost:9000/eth-usd" || window.location.href + "/eth-usd")
+        fetch(window.location.href + "/eth-usd" || "http://localhost:9000/eth-usd")
             .then(res => res.text())
             .then(res => JSON.parse(res))
             .then(res => {
