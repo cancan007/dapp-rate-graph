@@ -23,6 +23,7 @@ class EthUsdGraph extends React.Component {
                 console.log(res);
                 var datas = [];
 
+                console.log(process.env.DAPP_RATE_GRAPH);
                 for (var i = 0; i < res.length; i++) {
                     const ct = res[i]["time"] + "000";
                     console.log(ct);
