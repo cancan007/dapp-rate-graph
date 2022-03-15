@@ -15,8 +15,8 @@ class EthUsdGraph extends React.Component {
     }
 
     callAPI() {
-        if (process.env.DAPP_RATE_GRAPH === "production") fetch("https://dapp-rate-graph.herokuapp.com/eth-usd")
-        else fetch("http://localhost:9000/eth-usd")
+        if (process.env.DAPP_RATE_GRAPH === "development") fetch("http://localhost:9000/eth-usd")
+        else fetch("https://dapp-rate-graph.herokuapp.com/eth-usd")
             .then(res => res.text())
             .then(res => JSON.parse(res))
             .then(res => {
