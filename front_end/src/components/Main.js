@@ -8,6 +8,7 @@ import { constants } from "ethers"
 import brownieConfig from "../brownie-config.json"
 import eth from "../eth.png"
 import { BtcEurGraph } from "./graphs/BtcEurGraph"
+import { BtcUsdGraph } from "./graphs/BtcUsdGraph"
 import { EthUsdGraph } from "./graphs/EthUsdGraph"
 import { EthUsdEx } from "./graphs/EthUsdEx"
 
@@ -47,6 +48,7 @@ export const Main = () => {
     return (<>
         <h2 className={classes.title}>Crypt currencies Graphs</h2>
         <BtcEurGraph />
+        <BtcUsdGraph />
         <EthUsdGraph />
         <EthUsdEx />
     </>

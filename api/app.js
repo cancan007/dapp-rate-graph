@@ -8,6 +8,9 @@ var cors = require('cors');  // this is necessary to connect to React with node.
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ethUsdRouter = require('./routes/provide-eth-usd');
+var ethUsdRouterEx = require('./routes/provide-eth-usd-ex');
+
+var cryptoRouter = require('./routes/provideCryptRate');
 
 var app = express();
 
@@ -26,6 +29,8 @@ app.use(express.static(path.join(__dirname, '../front_end/build')));  // to use 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/eth-usd', ethUsdRouter);
+app.use('/eth-usd-ex', ethUsdRouterEx);
+app.use('/btc-usd', cryptoRouter("BTC", "USD"));
 
 
 // catch 404 and forward to error handler
