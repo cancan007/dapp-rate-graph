@@ -4,7 +4,7 @@ import requests
 import json 
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
+#from sklearn.linear_model import LinearRegression
 import os
 from dotenv import load_dotenv
 import datetime
@@ -42,7 +42,7 @@ def get_data():
     "highs" : [],
     "lows" : [],
     "opens" : [],
-    "pre_opens": [],
+    #"pre_opens": [],
     "closes" : []
     }
     
@@ -53,12 +53,12 @@ def get_data():
         d["dw"].append(dt.weekday())
         d["highs"].append(float(i["high"]))
         d["lows"].append(float(i["low"]))
-        if(d["opens"]):
-            d["pre_opens"].append(d["opens"][-1])
+        #if(d["opens"]):
+            #d["pre_opens"].append(d["opens"][-1])
         d["opens"].append(float(i["open"]))
         d["closes"].append(float(i["close"]))
     
-    d["pre_opens"].append(sum(d["opens"])/len(d["opens"])) # I can't use this, cause I don't have pre_opens for test
+    #d["pre_opens"].append(sum(d["opens"])/len(d["opens"])) # I can't use this, cause I don't have pre_opens for test
 
     p_d = pd.DataFrame(data=d)
 
