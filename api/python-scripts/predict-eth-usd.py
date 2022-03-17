@@ -8,7 +8,7 @@ import numpy as np
 import os
 from dotenv import load_dotenv
 import datetime
-from xgboost import XGBRegressor, plot_importance
+from xgboost import XGBRegressor
 
 load_dotenv() # variabes in .env are reflected to environment variables
 
