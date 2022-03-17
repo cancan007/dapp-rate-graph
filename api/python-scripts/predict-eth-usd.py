@@ -7,6 +7,8 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
 from dotenv import load_dotenv
+import datetime
+from xgboost import XGBRegressor, plot_importance
 
 load_dotenv() # variabes in .env are reflected to environment variables
 
@@ -36,38 +38,65 @@ def get_data():
 
     d = {
     "times" : [],
+    "dw": [],
     "highs" : [],
     "lows" : [],
     "opens" : [],
+    "pre_opens": [],
     "closes" : []
     }
     
 
     for i in returned_data:
         d["times"].append(int(i["time"]))
+        dt = datetime.datetime.fromtimestamp(int(i["time"]))
+        d["dw"].append(dt.weekday())
         d["highs"].append(float(i["high"]))
         d["lows"].append(float(i["low"]))
+        if(d["opens"]):
+            d["pre_opens"].append(d["opens"][-1])
         d["opens"].append(float(i["open"]))
         d["closes"].append(float(i["close"]))
+    
+    d["pre_opens"].append(sum(d["opens"])/len(d["opens"])) # I can't use this, cause I don't have pre_opens for test
 
     p_d = pd.DataFrame(data=d)
 
-    x_train = p_d["times"].values.reshape(-1, 1)
+    x_train = p_d[["times", "dw"]].values
     #y_train = p_d.drop(["times"], 1).values
     y_train = p_d["opens"].values.reshape(-1, 1)
 
     x_times = []
-    for b in range(len(x_train)):
+    x_dws = []
+    for b in range(len(d["times"])):
         if not x_times:
-            x_times.append(d["times"][-1] + 86400)
+            n = d["times"][-1] + 86400
+            x_times.append(n)
+            dt = datetime.datetime.fromtimestamp(n)
+            x_dws.append(dt.weekday())
         else:
-            x_times.append(x_times[b-1] + 86400)
+            n = x_times[b-1] + 86400
+            x_times.append(n)
+            dt = datetime.datetime.fromtimestamp(n)
+            x_dws.append(dt.weekday())
 
-    x_times_np = np.array(x_times).reshape(-1,1)
     
+    x_test = np.array([x_times, x_dws]).T
+    
+    """
     reg = LinearRegression()
     reg.fit(x_train, y_train)
-    ex_value = reg.predict(x_times_np)
+    ex_value = reg.predict(x_test)
+    """
+    model = XGBRegressor()
+
+
+    model.fit(
+    x_train,
+    y_train,
+    eval_metric='rmse') 
+
+    ex_value = model.predict(x_test)
 
     #x_times = x_times.reshape(1, -1).tolist()
     #ex_value = ex_value.reshape(1, -1).tolist()
@@ -77,6 +106,7 @@ def get_data():
     
     ex_res = {
         "time": x_times,
+        "dw": x_dws,
         "ex_val": ex_value
     }
     

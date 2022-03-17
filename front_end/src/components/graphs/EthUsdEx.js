@@ -26,7 +26,7 @@ class EthUsdEx extends React.Component {
                     var t = String(res["result"]["time"][i]) + "000";
                     const date = new Date(parseInt(t));
                     var value = res["result"]["ex_val"][i];
-                    const d = { x: new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()), y: value }
+                    const d = { x: new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()), y: value, lineColor: "red" }
                     console.log(d);
                     datas.push(d);
                 }
@@ -69,7 +69,7 @@ class EthUsdEx extends React.Component {
                         var t = String(res["result"]["time"][i]) + "000";
                         const date = new Date(parseInt(t));
                         var value = res["result"]["ex_val"][i];
-                        const d = { x: new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()), y: value }
+                        const d = { x: new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()), y: value, lineColor: "red" }
                         console.log(d);
                         datas.push(d);
                     }
