@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
-from python-dotenv import load_dotenv
+from dotenv import load_dotenv
 
 load_dotenv() # variabes in .env are reflected to environment variables
 
@@ -25,7 +25,7 @@ CORS(
 # total sum of array.
 #@app.route('/eth-usd-ex', methods = ['GET']) 
 def get_data(): 
-    if Flag == "development":
+    if FLAG == "development":
         res = requests.get('http://localhost:9000/eth-usd')
     else: 
         res = requests.get('https://dapp-rate-graph.herokuapp.com/etc-usd')
