@@ -28,7 +28,7 @@ def get_data():
     if FLAG == "development":
         res = requests.get('http://localhost:9000/eth-usd')
     else: 
-        res = requests.get('https://dapp-rate-graph.herokuapp.com/etc-usd')
+        res = requests.get('https://dapp-rate-graph.herokuapp.com/eth-usd')
 
     returned_data = res.json()
 
