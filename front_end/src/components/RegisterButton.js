@@ -9,23 +9,20 @@ import { useVariablesOfToken } from "../hooks/useVariablesOfToken"
 
 
 export const RegisterButton = (props) => {
-    const { registerCusSend, registerCusState } = usePayToken(props.tokenAddress)
+    const { approveSetRegister, state } = usePayToken(props.tokenAddress)
     const { useCustomerIsAllowed } = useVariables()
     const { useConvertionRate } = useVariablesOfToken(props.tokenAddress)
     const price = useConvertionRate(50 * 10 ** 8)
-    console.log(price)
+    console.log(price ? price.toNumber() : "NaN")
+    console.log(props.tokenAddress)
     const cusIsAllowed = useCustomerIsAllowed()
-    const isMining = registerCusState.status === "Mining";
+    const isMining = state.status === "Mining";
 
-    const register = (amount) => {
-        return registerCusSend(props.tokenAddress, amount)
-    }
-
-    const amount = 50;
+    //const amount = 50;
 
     const handleRegisterSubmit = () => {
         //const amountAsWei = utils.parseEther(amount.toString())
-        return register(price.toString())
+        return approveSetRegister(price.toNumber().toString())
     }
 
     if (props.tokenAddress === constants.AddressZero) {

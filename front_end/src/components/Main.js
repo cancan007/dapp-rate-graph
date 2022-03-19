@@ -15,6 +15,7 @@ import { EthUsdEx } from "./graphs/EthUsdEx"
 import { useVariablesOfToken } from "../hooks/useVariablesOfToken"
 import { DisplayRate } from "./DisplayRate"
 import { RegisterButton } from "./RegisterButton"
+import { ExGraphs } from "./ExGraphs"
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -61,8 +62,7 @@ export const Main = () => {
         <GeneralGraph url="btc-eur" />
         <EthUsdGraph />
         <GeneralGraph url="eth-eur" />
-        <GeneralGraphEx url="btc-usd" />
-        <EthUsdEx />
+        <ExGraphs tokenAddress={wethTokenAddress} />
 
     </>
     )

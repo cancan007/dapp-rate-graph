@@ -17,7 +17,7 @@ class GeneralGraphEx extends React.Component {
 
     callAPI() {
         //fetch("http://127.0.0.1:5000/eth-usd")
-        process.env.REACT_APP_DAPP_RATE_GRAPH === "development" ? fetch(`http://localhost:9000/${this.props.url}` + "-ex")
+        process.env.REACT_APP_DAPP_RATE_GRAPH === "development" ? fetch(`http://localhost:9000/${this.props.url}-ex`)
             .then(res => res.text())
             //.then(res => JSON.stringify(res))  // I don't know why, stingify and parse comb is not working
             //.then(res => res.json())
@@ -59,13 +59,10 @@ class GeneralGraphEx extends React.Component {
                 };
                 console.log(options);
 
-                const { useCustomerIsAllowed } = useVariables()
 
                 this.setState({ apiResponse: options })
-                this.setState({ name: name })
-                this.setState({ cusIsAllowed: useCustomerIsAllowed() })
             })
-            : fetch(`https://dapp-rate-graph.herokuapp.com/${this.props.url}` + "-ex")
+            : fetch(`https://dapp-rate-graph.herokuapp.com/${this.props.url}-ex`)
                 .then(res => res.text())
                 //.then(res => JSON.stringify(res))  // I don't know why, stingify and parse comb is not working
                 //.then(res => res.json())
@@ -107,11 +104,8 @@ class GeneralGraphEx extends React.Component {
                         }]
                     };
                     console.log(options);
-                    const { useCustomerIsAllowed } = useVariables()
 
                     this.setState({ apiResponse: options })
-                    this.setState({ name: name })
-                    this.setState({ cusIsAllowed: useCustomerIsAllowed() })
                 })
     }
 
@@ -126,16 +120,9 @@ class GeneralGraphEx extends React.Component {
     }
 
     render() {
-
-        if (this.state.cusIsAllowed) {
-            return (
-                <CanvasJSChart options={this.state.apiResponse} />
-            )
-        }
-        else {
-            return (<div>Pay to see predieted {this.state.name} charts!</div>)
-        }
-
+        return (
+            <CanvasJSChart options={this.state.apiResponse} />
+        )
     }
 }
 
