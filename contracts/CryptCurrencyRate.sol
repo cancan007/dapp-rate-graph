@@ -65,7 +65,7 @@ contract CryptCurrencyRate is Ownable {
 
     function registerCustomer(address _token, uint256 _amount) public {
         require(
-            _amount >= getConvertionRate(_token, 50 * 10**18),
+            _amount >= getConvertionRate(_token, 50 * 10**8), // 10**18 or 10**8
             "You have to pay over 50USD."
         );
         require(tokenIsAllowed(_token), "This token is not allowed.");

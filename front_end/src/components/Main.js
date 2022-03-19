@@ -7,10 +7,14 @@ import networkMapping from "../chain-info/deployments/map.json"
 import { constants } from "ethers"
 import brownieConfig from "../brownie-config.json"
 import eth from "../eth.png"
-import { BtcEurGraph } from "./graphs/BtcEurGraph"
+import { GeneralGraph } from "./graphs/GeneralGraph"
+import { GeneralGraphEx } from "./graphs/GeneralGraphEx"
 import { BtcUsdGraph } from "./graphs/BtcUsdGraph"
 import { EthUsdGraph } from "./graphs/EthUsdGraph"
 import { EthUsdEx } from "./graphs/EthUsdEx"
+import { useVariablesOfToken } from "../hooks/useVariablesOfToken"
+import { DisplayRate } from "./DisplayRate"
+import { RegisterButton } from "./RegisterButton"
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -33,6 +37,7 @@ export const Main = () => {
     const { chainId, error } = useEthers()
     const networkName = chainId ? helperConfig[chainId] : "dev"  //if chainId exists, call helperConfig[chainId]. if not, call 'dev'
     const wethTokenAddress = chainId ? brownieConfig["networks"][networkName]["weth_token"] : constants.AddressZero
+
     if (error) {
         console.log(error)
     }
@@ -45,12 +50,20 @@ export const Main = () => {
     ]
     console.log(chainId)
     console.log(networkName)
+
+
+
     return (<>
         <h2 className={classes.title}>Crypt currencies Graphs</h2>
-        <BtcEurGraph />
+        <DisplayRate />
+        <RegisterButton tokenAddress={wethTokenAddress} />
         <BtcUsdGraph />
+        <GeneralGraph url="btc-eur" />
         <EthUsdGraph />
+        <GeneralGraph url="eth-eur" />
+        <GeneralGraphEx url="btc-usd" />
         <EthUsdEx />
+
     </>
     )
 }

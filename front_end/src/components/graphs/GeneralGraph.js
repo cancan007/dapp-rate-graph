@@ -1,19 +1,17 @@
-
-
 import React, { useState } from "react"
 import CanvasJSReact from '../../assets/canvasjs.react';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class BtcUsdGraph extends React.Component {
+class GeneralGraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = { apiRespense: "" }
     }
 
     callAPI() {
-        process.env.REACT_APP_DAPP_RATE_GRAPH === "development" ? fetch("http://localhost:9000/btc-usd")
+        process.env.REACT_APP_DAPP_RATE_GRAPH === "development" ? fetch(`http://localhost:9000/${this.props.url}`)
             .then(res => res.text())
             .then(res => JSON.parse(res))
             .then(res => {
@@ -50,11 +48,13 @@ class BtcUsdGraph extends React.Component {
                     }
                 })
 
+                const name = this.props.url.toUpperCase();
+
 
                 const options = {
 
                     title: {
-                        text: "BTC-USD Chart"
+                        text: `${name} Chart`
                     },
                     data: [{
                         type: "line",
@@ -62,11 +62,13 @@ class BtcUsdGraph extends React.Component {
                     }]
                 };
 
+                console.log(name);
+
                 console.log(options);
 
                 this.setState({ apiResponse: options })
             })
-            : fetch("https://dapp-rate-graph.herokuapp.com/btc-usd")
+            : fetch(`https://dapp-rate-graph.herokuapp.com/${this.props.url}`)
                 .then(res => res.text())
                 .then(res => JSON.parse(res))
                 .then(res => {
@@ -103,10 +105,12 @@ class BtcUsdGraph extends React.Component {
                         }
                     })
 
+                    const name = this.props.url.toUpperCase();
+
 
                     const options = {
                         title: {
-                            text: "BTC-USD Chart"
+                            text: `${name} Chart`
                         },
                         data: [{
                             type: "line",
@@ -136,4 +140,4 @@ class BtcUsdGraph extends React.Component {
     }
 }
 
-export { BtcUsdGraph };
+export { GeneralGraph };

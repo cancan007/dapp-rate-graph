@@ -9,8 +9,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ethUsdRouter = require('./routes/provide-eth-usd');
 var ethUsdRouterEx = require('./routes/provide-eth-usd-ex');
-
+var btcEurRouter = require('./routes/provide-btc-eur');
+var ethEurRouter = require('./routes/provide-eth-eur');
 var cryptoRouter = require('./routes/provideCryptRate');
+var btcUsdRouterEx = require('./routes/provide-btc-usd-ex');
 
 var app = express();
 
@@ -29,8 +31,11 @@ app.use(express.static(path.join(__dirname, '../front_end/build')));  // to use 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/eth-usd', ethUsdRouter);
+app.use('/eth-eur', ethEurRouter);
 app.use('/eth-usd-ex', ethUsdRouterEx);
-app.use('/btc-usd', cryptoRouter("BTC", "USD"));
+app.use('/btc-usd', cryptoRouter("BTC", "USD")); // do not common router, they all provide same last datas, this time, BTC-EUR
+app.use('/btc-usd-ex', btcUsdRouterEx);
+app.use('/btc-eur', btcEurRouter);
 
 
 // catch 404 and forward to error handler
